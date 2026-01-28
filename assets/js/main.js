@@ -253,46 +253,4 @@
     })
   });
 
-  /**
-   * GeoCities Easter Egg Toggle
-   * Welcome to the 90s!
-   */
-  const initGeocities = () => {
-    const toggleBtn = document.querySelector('.geocities-toggle');
-    const counterEl = document.querySelector('.geocities-counter span');
-
-    if (toggleBtn) {
-      // Check if GeoCities mode was previously enabled
-      if (localStorage.getItem('geocitiesMode') === 'true') {
-        document.body.classList.add('geocities-mode');
-        toggleBtn.textContent = 'Back to 2025';
-      }
-
-      // Generate a fun visitor count
-      if (counterEl) {
-        const baseCount = 1337;
-        const randomAdd = Math.floor(Math.random() * 9000);
-        counterEl.textContent = String(baseCount + randomAdd).padStart(6, '0');
-      }
-
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('geocities-mode');
-        const isGeocities = document.body.classList.contains('geocities-mode');
-
-        // Save preference
-        localStorage.setItem('geocitiesMode', isGeocities);
-
-        // Update button text
-        toggleBtn.textContent = isGeocities ? 'Back to 2025' : '90s Mode';
-
-        // Update counter randomly when entering GeoCities mode
-        if (isGeocities && counterEl) {
-          const currentCount = parseInt(counterEl.textContent);
-          counterEl.textContent = String(currentCount + 1).padStart(6, '0');
-        }
-      });
-    }
-  };
-  window.addEventListener('load', initGeocities);
-
 })()
